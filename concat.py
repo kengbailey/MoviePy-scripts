@@ -39,9 +39,16 @@ def getVideoFiles():
     return video_files
 
 def isVideo(vid):
-    if any(x in vid for x in FORMATS):
-        return True
-    else:
+    
+    try:
+        parts = vid.split('.')
+        if any(parts[1] in x for x in FORMATS):
+            return True
+        else:
+            return False
+    
+    except Exception as e:
+        print("Failed to test if is video!")
         return False
 
 if __name__ == '__main__':
@@ -57,7 +64,7 @@ if __name__ == '__main__':
         print("Output file not valid!")
         print("Usage: python3 concat.py out.mp4")
         sys.exit(0)
-
+        
     # compile video list
     video_list = getVideoFiles()
 
