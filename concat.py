@@ -31,12 +31,20 @@ def concatClips(video_list):
     
 
 def getVideoFiles():
+    
     video_files = []
     files_path = os.listdir()    
+    
     for path in files_path:
         if isVideo(path):
             video_files.append(os.getcwd()+'/'+path)
-    return video_files
+    
+    if len(video_files) > 0:
+        return video_files
+    else:
+        print("No compatible video files found!")
+        sys.exit(0)
+
 
 def isVideo(vid):
     
