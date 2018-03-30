@@ -19,7 +19,7 @@ from moviepy.editor import VideoFileClip, concatenate_videoclips
 import sys
 import os
 
-FORMATS = [".MP4", ".mp4"]
+FORMATS = [".MP4", ".mp4", ".avi", ".AVI"]
 
 def concatClips(video_list):
     clip_list = []
@@ -40,11 +40,14 @@ def getVideoFiles():
             video_files.append(os.getcwd()+'/'+path)
     
     if len(video_files) > 0:
-        return video_files
+        if len(video_files) > 1:
+            return video_files
+        else:
+            print("Only one compatible video found!")
+            sys.exit(0)
     else:
         print("No compatible video files found!")
         sys.exit(0)
-
 
 def isVideo(vid):
     
